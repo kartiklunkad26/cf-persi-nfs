@@ -1,0 +1,41 @@
+---
+name: nfs-volume
+director_uuid: 8b5a911d-96e7-40dc-a259-a552390f6e7f
+
+stemcells:
+- alias: default
+  os: ubuntu-trusty
+  version: '3263.12'
+
+instance_groups:
+- name: nfsbroker
+  azs: [env1]
+  instances: 1
+  networks:
+    - name: VMNetwork
+      static_ips: 10.193.96.73
+  stemcell: default
+  vm_type: small
+  persistent_disk_type: '30720'
+  jobs:
+    - name: nfsbroker
+      release: nfs-volume
+      log_level: debug
+  properties:
+    nfsbroker: {}
+properties:
+  nfsbroker:
+    plan-desc: broker for exisiting NFS shares
+    username: Pivotal
+    password: burrito
+
+releases:
+  - name: nfs-volume
+    version: latest
+
+update:
+  canaries: 1
+  max_in_flight: 3
+  serial: false
+  canary_watch_time: 1000-30000
+  update_watch_time: 1000-30000

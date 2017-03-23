@@ -1,6 +1,6 @@
 ---
 name: nfs-volume
-director_uuid: 8b5a911d-96e7-40dc-a259-a552390f6e7f
+director_uuid: 7b5a911d-96e7-40dc-a259-a552390f6e7f
 
 stemcells:
 - alias: default
